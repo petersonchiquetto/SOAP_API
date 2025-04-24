@@ -1,6 +1,6 @@
 # SOAP_API
 
-> This project demonstrates how to integrate with SOAP-based web services. It includes practical examples of making requests, handling authentication, and processing responses. The goal is to provide a solid foundation for working with SOAP APIs in various scenarios.
+> This project demonstrates how to integrate with SOAP-based web services. It includes practical examples of making requests, handling authentication, and processing responses. The goal is to provide a solid foundation for working with SOAP APIs in various scenarios, while implementing basic CRUD operations.
 
 ---
 
@@ -14,7 +14,20 @@
 - **Standardized**: SOAP is highly standardized, with well-defined rules for request and response formatting.
 - **Built-in Security**: It supports WS-Security standards for message encryption and authentication.
 
-In this project, you'll learn how to send SOAP requests and handle SOAP responses, which can be essential for integrating with many legacy systems and web services.
+This project focuses on using SOAP for integrating with an API and demonstrating the implementation of CRUD operations.
+
+---
+
+## 📌 CRUD Operations
+
+In this project, we will perform **CRUD** (Create, Read, Update, Delete) operations on a SOAP-based API. Below is a description of each operation and its SOAP request format:
+
+1. **Create** - Sends a request to create a new resource (e.g., adding a new user or entry to the database).
+2. **Read** - Retrieves information from the server (e.g., fetching user details).
+3. **Update** - Modifies an existing resource on the server (e.g., updating user information).
+4. **Delete** - Removes a resource from the server (e.g., deleting a user or entry).
+
+Each operation will be executed by sending appropriate SOAP requests to the server and processing the response.
 
 ---
 
@@ -45,9 +58,11 @@ To get started with this project, follow these steps:
 
 ## 🧑‍💻 Usage
 
-### Making a SOAP Request
+### SOAP CRUD Operations Example
 
-The `api_integration.py` script contains the main logic for interacting with the SOAP API. Below is an example of how to send a SOAP request:
+Below is an example of how to implement each CRUD operation using SOAP requests.
+
+#### 1. **Create Operation** (Adding a New User)
 
 ```python
 import requests
@@ -55,14 +70,15 @@ import requests
 # URL of the SOAP API endpoint
 url = "https://example.com/soap-endpoint"
 
-# Define the SOAP request body
+# Define the SOAP request body for creating a new user
 headers = {'Content-Type': 'text/xml; charset=utf-8'}
 body = '''<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://www.example.com/webservice">
    <soapenv:Header/>
    <soapenv:Body>
-      <web:GetInfo>
-         <web:requestParam>12345</web:requestParam>
-      </web:GetInfo>
+      <web:AddUser>
+         <web:userName>JohnDoe</web:userName>
+         <web:userEmail>johndoe@example.com</web:userEmail>
+      </web:AddUser>
    </soapenv:Body>
 </soapenv:Envelope>'''
 
@@ -73,26 +89,72 @@ response = requests.post(url, data=body, headers=headers)
 print(response.text)
 ```
 
-This script sends a SOAP request and prints the response from the API.
+#### 2. **Read Operation** (Fetching User Information)
+
+```python
+body = '''<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://www.example.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:GetUserInfo>
+         <web:userID>12345</web:userID>
+      </web:GetUserInfo>
+   </soapenv:Body>
+</soapenv:Envelope>'''
+
+response = requests.post(url, data=body, headers=headers)
+print(response.text)
+```
+
+#### 3. **Update Operation** (Updating User Information)
+
+```python
+body = '''<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://www.example.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:UpdateUser>
+         <web:userID>12345</web:userID>
+         <web:newEmail>john.doe_updated@example.com</web:newEmail>
+      </web:UpdateUser>
+   </soapenv:Body>
+</soapenv:Envelope>'''
+
+response = requests.post(url, data=body, headers=headers)
+print(response.text)
+```
+
+#### 4. **Delete Operation** (Removing a User)
+
+```python
+body = '''<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://www.example.com/webservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:DeleteUser>
+         <web:userID>12345</web:userID>
+      </web:DeleteUser>
+   </soapenv:Body>
+</soapenv:Envelope>'''
+
+response = requests.post(url, data=body, headers=headers)
+print(response.text)
+```
 
 ---
 
 ## 🎨 Example of SOAP Response
 
-A sample response from the API might look like this:
+A sample response for a **Read** operation (fetching user details) might look like this:
 
 ```xml
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://www.example.com/webservice">
    <soapenv:Header/>
    <soapenv:Body>
-      <web:GetInfoResponse>
-         <web:responseParam>Success</web:responseParam>
-      </web:GetInfoResponse>
+      <web:GetUserInfoResponse>
+         <web:userName>JohnDoe</web:userName>
+         <web:userEmail>johndoe@example.com</web:userEmail>
+      </web:GetUserInfoResponse>
    </soapenv:Body>
 </soapenv:Envelope>
 ```
-
-You can modify the `api_integration.py` script to process the SOAP response as needed.
 
 ---
 
@@ -101,6 +163,7 @@ You can modify the `api_integration.py` script to process the SOAP response as n
 By working with this project, you will learn to:
 
 - Understand SOAP requests and responses.
+- Implement basic CRUD operations (Create, Read, Update, Delete) with SOAP APIs.
 - Interact with SOAP-based web services.
 - Handle authentication and manage headers for secure communication.
 - Parse and process SOAP responses to integrate into your applications.
@@ -116,3 +179,5 @@ This project is licensed under the MIT License. See the [LICENSE](https://github
 ## 💬 Contributing
 
 Feel free to contribute to this project by opening issues or submitting pull requests. Contributions are always welcome!
+
+---
