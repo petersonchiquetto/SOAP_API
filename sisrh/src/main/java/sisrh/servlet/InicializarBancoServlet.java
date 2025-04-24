@@ -18,7 +18,7 @@ import sisrh.dto.Solicitacao;
 import sisrh.dto.Usuario;
 
 /**
- * Classe para Inicialiação do Banco de Dados
+ * Classe para Inicialiaï¿½ï¿½o do Banco de Dados
  * @author pucpr
  *
  */
@@ -28,14 +28,14 @@ public class InicializarBancoServlet extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
-		System.out.println("----- SISRH Inicialização ----");
-		System.out.println("Inicialização!");
+		System.out.println("----- SISRH Inicializaï¿½ï¿½o ----");
+		System.out.println("Inicializaï¿½ï¿½o!");
 		carregarEstruturaDados();
 		super.init();
 	}
 
 	/**
-	 * Se não existir tabelas, criar a partir do script sql
+	 * Se nï¿½o existir tabelas, criar a partir do script sql
 	 */
 	private void carregarEstruturaDados() {
 		try {						
@@ -61,7 +61,7 @@ public class InicializarBancoServlet extends HttpServlet {
 
 	
 	/**
-	 * Carrega e retorna conteúdo de um arquivo .sql
+	 * Carrega e retorna conteï¿½do de um arquivo .sql
 	 * 
 	 * @param file
 	 * @return
@@ -79,3 +79,9 @@ public class InicializarBancoServlet extends HttpServlet {
 	}
 
 }
+
+
+
+
+
+

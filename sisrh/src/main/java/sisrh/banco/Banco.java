@@ -36,12 +36,12 @@ public class Banco {
 	static private void criarConexaoBanco() {
 		try {
 			conn = DriverManager.getConnection("jdbc:hsqldb:file:C:\\workspace\\sisrh_db\\rh_db", "SA", "");
-			System.out.println("Conexão ao banco BANCO_SISRH.........[OK]");
+			System.out.println("Conexï¿½o ao banco BANCO_SISRH.........[OK]");
 		} catch (SQLException e) {
-			System.out.println("Conexão ao banco BANCO_SISRH.........[NOK]");
+			System.out.println("Conexï¿½o ao banco BANCO_SISRH.........[NOK]");
 			if (e.getMessage().contains("lockFile")) {
 				JOptionPane.showMessageDialog(null,
-						"O banco está bloqueado \n porque o Tomcat não liberou a conexão. REINICIE O TOMCAT");
+						"O banco estï¿½ bloqueado \n porque o Tomcat nï¿½o liberou a conexï¿½o. REINICIE O TOMCAT");
 
 			} else {
 				e.printStackTrace();
@@ -358,3 +358,10 @@ public class Banco {
 	}
 
 }
+
+
+
+
+
+
+
